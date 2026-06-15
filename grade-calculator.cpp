@@ -14,6 +14,8 @@ int main() {
     for (int i = 0; i < n; i++) {
         cout << "Subject " << i+1 << " name: ";
         cin >> subjects[i];
+        cin.ignore();
+        getline(cin, subjects[i]);
         cout << "Score: ";
         cin >> scores[i];
     }
@@ -24,18 +26,31 @@ int main() {
 
     double avg = total / n;
 
-    char grade;
-    if (avg >= 90) grade = 'A';
-    else if (avg >= 80) grade = 'B';
-    else if (avg >= 70) grade = 'C';
-    else if (avg >= 60) grade = 'D';
-    else grade = 'F';
+    string grade;
+    float gpa;
+    if (avg >= 90) {
+        grade = "A+";
+        gpa = 4.0;
+    } else if (avg >= 80) {
+        grade = "A";
+        gpa = 4.0;
+    } else if (avg >= 70) {
+        grade = "B";
+        gpa = 3.0;
+    } else if (avg >= 60) {
+        grade = "C";
+        gpa = 2.0;
+    } else {
+        grade = "F";
+        gpa = 0.0;
+    }
 
     cout << "\n--- Results ---" << endl;
     for (int i = 0; i < n; i++)
         cout << subjects[i] << ": " << scores[i] << endl;
 
     cout << "Average: " << avg << endl;
+    cout << "GPA: " << gpa << endl;
     cout << "Grade: " << grade << endl;
     cout << (avg >= 60 ? "Status: PASS" : "Status: FAIL") << endl;
 
